@@ -1,0 +1,78 @@
+table {
+  width: 100%;
+}
+
+h2 {
+  text-align: left;
+  margin-left: 20px;
+}
+
+.align-0, .align-1, .align-2 {
+  text-align: left;
+}
+
+.align-1, .align-3 {
+  font-size: 24px;
+}
+
+.align-2, .align-5 {
+  border-right: #a9adb0 1px solid;
+}
+
+.align-5 {
+  padding-right: 20px !important;
+}
+
+.align-3, .align-4, .align-5, .align-6 {
+  text-align: right;
+}
+
+.mat-sort-header-container {
+  //display: flex;
+  //justify-content: flex-end;
+}
+
+.mat-header-cell {
+  height: 1px;
+  padding: 0 20px;
+  width: fit-content;
+  border-color: white;
+  align-self: stretch;
+  text-align: right;
+}
+
+.mat-cell {
+  padding: 0 20px;
+  width: fit-content;
+  height: 1px;
+  border-top-color: white;
+  border-left-color: white;
+  border-bottom-color: white;
+  align-self: stretch;
+}
+
+.mat-footer-cell {
+  padding: 0 20px;
+  width: fit-content;
+  height: 1px;
+  border-color: white;
+  align-self: stretch;
+
+  &.align-0 {
+    text-align: right !important;
+    padding-right: 70px;
+  }
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.filter {
+  padding: 10px 0;
+  height: auto;
+
+  mat-checkbox {
+    margin-right: 10px;
+  }
+}

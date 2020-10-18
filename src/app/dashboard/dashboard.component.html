@@ -1,0 +1,102 @@
+<div class="labour-cost-container" *ngIf="dataSource">
+  <h2>{{'Labour cost report' }}</h2>
+
+  <table mat-table [dataSource]="dataSource" class="labour-cost-table"
+         (matSortChange)="sortData($event)"
+         matSort matSortDisableClear matSortDirection="desc">
+
+    <ng-container *ngFor="let column of columnDefinitions; let i = index" [matColumnDef]="column.def">
+
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="mat-sort-header-container-{{i}}">
+        {{ column.label | uppercase}}
+      </th>
+
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="mat-sort-header-container-{{i}}">
+        {{ column.label | uppercase}}
+      </th>
+
+      <span *ngIf="column.def === 'name'">
+        <td mat-cell *matCellDef="let row" class="align-0">
+          {{row.name}}
+        </td>
+      </span>
+      <span *ngIf="column.def === 'workerCount'">
+        <td mat-cell *matCellDef="let row" class="align-1">
+            {{row.workerCount}}
+        </td>
+      </span>
+      <span *ngIf="column.def === 'complianceStats'">
+        <td mat-cell *matCellDef="let row" class="align-2 column-right">
+          <span *ngIf="row.complianceStats">
+            {{row.complianceStats.Total | number: "1.2-2"}} %
+          </span>
+           <span *ngIf="!row.complianceStats">
+            {{ " 0 " }} %
+          </span>
+        </td>
+      </span>
+      <span *ngIf="column.def === 'grossPayTotal'">
+        <td mat-cell *matCellDef="let row" class="align-3">
+            {{row.grossPayTotal}}
+        </td>
+      </span>
+      <span *ngIf="column.def === 'payrollAdminTotal'">
+        <td mat-cell *matCellDef="let row" class="align-4">
+           {{row.payrollAdminTotal}}
+        </td>
+      </span>
+      <span *ngIf="column.def === 'labourCostTotal'">
+        <td mat-cell *matCellDef="let row" class="align-5">
+           {{row.labourCostTotal}}
+        </td>
+      </span>
+      <span *ngIf="column.def === 'workForce'">
+        <td mat-cell *matCellDef="let row" class="align-6">
+            {{row.workerCount / total.workerCount * 100 | number: "1.2-2" }} %
+        </td>
+      </span>
+
+      <td mat-footer-cell *matFooterCellDef class="d-flex flex-row align-{{i}}">
+        <span *ngIf="total && column.def === 'name'">
+          {{total.name}}
+        </span>
+        <span *ngIf="total && column.def === 'workerCount'">
+          {{total.workerCount}}
+        </span>
+        <span *ngIf="total && column.def === 'complianceStats'">
+          {{total.complianceStats.Total | number: "1.2-2"}} %
+        </span>
+        <span *ngIf="total && column.def === 'grossPayTotal'">
+          {{total.grossPayTotal}}
+        </span>
+        <span *ngIf="total && column.def === 'payrollAdminTotal'">
+          {{total.payrollAdminTotal}}
+        </span>
+        <span *ngIf="total && column.def === 'labourCostTotal'">
+          {{total.labourCostTotal}}
+        </span>
+        <span *ngIf="total && column.def === 'workForce'">
+          {{total.workForce || 100 }} %
+        </span>
+      </td>
+
+      <span *ngIf="total">
+        <mat-footer-cell *matFooterCellDef>{{total.workerCount}}</mat-footer-cell>
+      </span>
+
+    </ng-container>
+
+    <tr class="pointer" mat-header-row *matHeaderRowDef="getDisplayedColumns()"></tr>
+    <tr mat-row *matRowDef="let row; columns: getDisplayedColumns();"></tr>
+    <tr mat-footer-row class="sticky-footer" *matFooterRowDef="getDisplayedColumns();"></tr>
+  </table>
+
+</div>
+
+<form [formGroup]="form" class="filter">
+    <span *ngFor="let cd of columnDefinitions">
+      <input type="checkbox" [formControlName]="cd.def"
+             [(ngModel)]="cd.hide"/>
+      {{cd.label}}
+      </span>
+</form>
