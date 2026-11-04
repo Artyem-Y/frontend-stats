@@ -5,6 +5,10 @@
   To learn more about this file see: https://angular.io/config/solution-tsconfig.
 */
 {
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "moduleResolution": "bundler"
+  },
   "files": [
     "src/app/mock-employees.ts"
   ],
@@ -14,9 +18,6 @@
     },
     {
       "path": "./tsconfig.spec.json"
-    },
-    {
-      "path": "./e2e/tsconfig.json"
     }
 ]
 }

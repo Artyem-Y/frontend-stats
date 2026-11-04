@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { RouterModule } from "@angular/router";
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 
 import { MatInputModule}  from "@angular/material/input";
 import { MatPaginatorModule}  from "@angular/material/paginator";
@@ -20,32 +20,26 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 
 import { LabourStatsService } from './shared/services/labourStats.service'
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    DashboardComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    RouterModule,
-    HttpClientModule,
-    AppRoutingModule,
-    BrowserModule,
-    BrowserAnimationsModule,
-    MatButtonModule,
-    MatInputModule,
-    MatTableModule,
-    MatSortModule,
-    MatPaginatorModule,
-    MatCheckboxModule,
-    MatProgressSpinnerModule,
-    RouterModule,
-    ReactiveFormsModule
-  ],
-  providers: [
-    LabourStatsService
-  ],
-  bootstrap: [AppComponent]
-})
+@NgModule({ declarations: [
+        AppComponent,
+        DashboardComponent
+    ],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        AppRoutingModule,
+        RouterModule,
+        AppRoutingModule,
+        BrowserModule,
+        BrowserAnimationsModule,
+        MatButtonModule,
+        MatInputModule,
+        MatTableModule,
+        MatSortModule,
+        MatPaginatorModule,
+        MatCheckboxModule,
+        MatProgressSpinnerModule,
+        RouterModule,
+        ReactiveFormsModule], providers: [
+        LabourStatsService,
+        provideHttpClient(withXhr(), withInterceptorsFromDi())
+    ] })
 export class AppModule { }

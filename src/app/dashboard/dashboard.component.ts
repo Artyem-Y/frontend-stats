@@ -1,16 +1,18 @@
-import {AfterViewInit, Component, OnInit, ViewChild, ViewEncapsulation, OnDestroy} from "@angular/core";
+import {AfterViewInit, Component, OnInit, ViewChild, ViewEncapsulation, OnDestroy, ChangeDetectionStrategy} from "@angular/core";
 import {LabourStatsService} from '../shared/services/labourStats.service'
-import {FormControl, FormGroup} from '@angular/forms';
+import {UntypedFormControl, UntypedFormGroup} from '@angular/forms';
 import {merge, Observable, Subscription} from 'rxjs';
 import {MatTableDataSource} from "@angular/material/table";
 import {MatSort} from '@angular/material/sort';
 import {Provider} from '../shared/interfaces/provider';
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss'],
-  encapsulation: ViewEncapsulation.None
+    selector: 'app-dashboard',
+    templateUrl: './dashboard.component.html',
+    styleUrls: ['./dashboard.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    changeDetection: ChangeDetectionStrategy.Eager,
+    standalone: false
 })
 export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
 
@@ -50,14 +52,14 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
     })
   }
 
-  form: FormGroup = new FormGroup({
-    name: new FormControl(false),
-    workerCount: new FormControl(false),
-    complianceStats: new FormControl(false),
-    grossPayTotal: new FormControl(false),
-    payrollAdminTotal: new FormControl(false),
-    labourCostTotal: new FormControl(false),
-    workForce: new FormControl(false),
+  form: UntypedFormGroup = new UntypedFormGroup({
+    name: new UntypedFormControl(false),
+    workerCount: new UntypedFormControl(false),
+    complianceStats: new UntypedFormControl(false),
+    grossPayTotal: new UntypedFormControl(false),
+    payrollAdminTotal: new UntypedFormControl(false),
+    labourCostTotal: new UntypedFormControl(false),
+    workForce: new UntypedFormControl(false),
   });
 
   name = this.form.get('name');
