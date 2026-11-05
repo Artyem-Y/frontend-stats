@@ -1,0 +1,12 @@
+
+[plugins."engineering-paved-path@ai-project"]
+enabled = true
+
+[plugins."research-tools@ai-project"]
+enabled = true
+
+[plugins."architecture-review@ai-project"]
+enabled = true
+
+[plugins."sdd-engineering@ai-project"]
+enabled = true
